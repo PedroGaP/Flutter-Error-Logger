@@ -14,7 +14,7 @@ typedef ErrorCallback = void Function(Object error, StackTrace stackTrace);
 class FlutterErrorLogger {
   static final Dio _dio = Dio(
     BaseOptions(
-      baseUrl: "https://api.fel.gro.ovh",
+      baseUrl: "https://api.fel.grod.ovh",
       validateStatus: (status) => true,
     ),
   );
