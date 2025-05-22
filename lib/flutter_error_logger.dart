@@ -19,6 +19,8 @@ class FlutterErrorLogger {
     ),
   );
 
+  static int _timeoutDelay = 10;
+
   static String _errorMessage = "";
   static String? _appIdentifier;
   static String? _apiKey;
@@ -139,7 +141,7 @@ class FlutterErrorLogger {
               "errorDatetime": DateTime.now().toUtc().toIso8601String(),
             },
           )
-          .timeout(Duration(seconds: 30));
+          .timeout(Duration(seconds: _timeoutDelay));
     } on TimeoutException catch (e, stackTrace) {
       _errorMessage = "API Timedout";
       FlutterError.dumpErrorToConsole(
@@ -168,7 +170,7 @@ class FlutterErrorLogger {
             options: Options(headers: {"api_key": _apiKey}),
             data: {"appIdentifier": _appIdentifier},
           )
-          .timeout(Duration(seconds: 3));
+          .timeout(Duration(seconds: _timeoutDelay));
 
       if (response.statusCode != 200) {
         _errorMessage = "Either App Identifier or Api Key is invalid!";
