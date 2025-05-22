@@ -123,7 +123,7 @@ class FlutterErrorLogger {
 
       Response response = await _dio
           .post(
-            "https://api.fel.gro.ovh/errors",
+            "https://api.fel.grod.ovh/errors",
             options: Options(
               headers: {"api_key": _apiKey},
               contentType: "application/json",
@@ -164,7 +164,7 @@ class FlutterErrorLogger {
 
       Response response = await _dio
           .post(
-            "https://api.fel.gro.ovh/app/validate",
+            "https://api.fel.grod.ovh/app/validate",
             options: Options(headers: {"api_key": _apiKey}),
             data: {"appIdentifier": _appIdentifier},
           )
