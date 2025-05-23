@@ -171,7 +171,7 @@ class FlutterErrorLogger {
           .timeout(Duration(seconds: _timeoutDelay));
 
       if (response.statusCode != 200) {
-        debugPrint(response.data);
+        debugPrint(response.data.toString());
         _errorMessage = "Either App Identifier or Api Key is invalid!";
         return;
       }
