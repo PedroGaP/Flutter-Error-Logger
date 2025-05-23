@@ -19,15 +19,13 @@ class FlutterErrorLogger {
     ),
   );
 
-  static int _timeoutDelay = 10;
+  static final int _timeoutDelay = 10;
 
   static String _errorMessage = "";
   static String? _appIdentifier;
   static String? _apiKey;
   static ErrorCallback? _onError;
 
-  /// The [MaterialApp] widget to render when api returns a timeout
-  static Widget? _onInternalErrorPage;
   static int? _appId;
 
   static String? get appIdentifier => _appIdentifier;
@@ -123,7 +121,7 @@ class FlutterErrorLogger {
 
       List<String> details = await _getPlatformDetails();
 
-      Response response = await _dio
+      await _dio
           .post(
             "https://api.fel.grod.ovh/errors",
             options: Options(
@@ -173,6 +171,7 @@ class FlutterErrorLogger {
           .timeout(Duration(seconds: _timeoutDelay));
 
       if (response.statusCode != 200) {
+        debugPrint(response.data);
         _errorMessage = "Either App Identifier or Api Key is invalid!";
         return;
       }
@@ -190,10 +189,8 @@ class FlutterErrorLogger {
   static void initialize({
     required Widget Function() appBuilder,
     ErrorCallback? appOnError,
-    Widget? internalErrorPage,
   }) {
     _onError = _handleError;
-    _onInternalErrorPage = internalErrorPage;
 
     FlutterError.onError = (FlutterErrorDetails details) {
       FlutterError.dumpErrorToConsole(details);
