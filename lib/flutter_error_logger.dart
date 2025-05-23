@@ -8,6 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_error_logger/utils/connectivity.dart';
 
 typedef ErrorCallback = void Function(Object error, StackTrace stackTrace);
 
@@ -117,6 +118,8 @@ class FlutterErrorLogger {
   /// ;[stackTrace] The given stackTrace for logging
   static Future _handleError(Object error, StackTrace stackTrace) async {
     try {
+      if (!(await ConnectivitFEL.isConnected())) return;
+
       String severity = _calculateSeverity(error);
 
       List<String> details = await _getPlatformDetails();
@@ -158,6 +161,8 @@ class FlutterErrorLogger {
     required String appIdentifier,
     required String apiKey,
   }) async {
+    if (!(await ConnectivitFEL.isConnected())) return;
+
     try {
       _appIdentifier = appIdentifier;
       _apiKey = apiKey;
