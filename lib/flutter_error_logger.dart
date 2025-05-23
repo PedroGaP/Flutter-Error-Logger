@@ -183,6 +183,11 @@ class FlutterErrorLogger {
       FlutterError.dumpErrorToConsole(
         FlutterErrorDetails(exception: e, stack: stackTrace),
       );
+    } catch (e, stackTrace) {
+      _errorMessage = "Error setting up the package.";
+      FlutterError.dumpErrorToConsole(
+        FlutterErrorDetails(exception: e, stack: stackTrace),
+      );
     }
   }
 
