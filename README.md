@@ -5,7 +5,7 @@ know whether this package might be useful for them.
 
 TODO: List what your package can do. Maybe include images, gifs, or videos.
 
-> [!NOTE]
+> [!AVISO]
 > This is a note
 
 ## Getting started
